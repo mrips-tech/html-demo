@@ -3,44 +3,698 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information</title>
+    <title>Malla Reddy Institute of Pharmaceutical Sciences</title>
+    <style>
+        :root {
+            --dark-blue: #0B3D91;
+            --gold: #F4B400;
+            --white: #ffffff;
+            --light-gray: #f5f7fb;
+            --text: #1f2a46;
+            --soft-shadow: 0 18px 45px rgba(11, 61, 145, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 1rem 0;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 1px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark-blue);
+            letter-spacing: 0.06em;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark-blue);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 3rem;
+            padding: 5rem 0 3rem;
+        }
+
+        .hero-copy {
+            max-width: 640px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            color: var(--dark-blue);
+            line-height: 1.03;
+        }
+
+        .hero p {
+            margin: 1.5rem 0 2rem;
+            font-size: 1.05rem;
+            color: #4f5c7f;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .button-primary,
+        .button-secondary {
+            padding: 1rem 1.8rem;
+            border-radius: 999px;
+            border: none;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .button-primary {
+            background: var(--dark-blue);
+            color: var(--white);
+            box-shadow: 0 18px 35px rgba(11, 61, 145, 0.2);
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: var(--dark-blue);
+            border: 2px solid var(--dark-blue);
+        }
+
+        .button-primary:hover,
+        .button-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: grid;
+            gap: 1rem;
+            background: linear-gradient(180deg, rgba(11, 61, 145, 0.95), rgba(11, 61, 145, 0.85));
+            border-radius: 32px;
+            padding: 2rem;
+            color: var(--white);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .hero-visual h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero-visual p {
+            margin: 0.75rem 0 0;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        .section-heading {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.8rem, 2.2vw, 2.4rem);
+            color: var(--dark-blue);
+        }
+
+        .section-subtext {
+            color: #5c6a8a;
+            max-width: 680px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: var(--soft-shadow);
+            padding: 2rem;
+            border: 1px solid rgba(11, 61, 145, 0.08);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--dark-blue);
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            margin: 0.9rem 0 0;
+            color: #5c6a8a;
+        }
+
+        .features,
+        .programs,
+        .statistics,
+        .process,
+        .vision-mission {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .programs {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .program-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem;
+            background: rgba(11, 61, 145, 0.04);
+            border: 1px solid rgba(11, 61, 145, 0.12);
+            border-radius: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 40px rgba(11, 61, 145, 0.12);
+        }
+
+        .program-card h3 {
+            margin: 0 0 0.75rem;
+            color: var(--dark-blue);
+        }
+
+        .program-card p {
+            margin: 0;
+            color: #5c6a8a;
+        }
+
+        .features {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid rgba(11, 61, 145, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px rgba(11, 61, 145, 0.12);
+        }
+
+        .feature-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            color: var(--dark-blue);
+        }
+
+        .statistics {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .stat-card {
+            text-align: center;
+            background: linear-gradient(180deg, rgba(11, 61, 145, 0.1), rgba(244, 180, 0, 0.1));
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid rgba(11, 61, 145, 0.08);
+        }
+
+        .stat-card h3 {
+            margin: 0 0 0.75rem;
+            color: var(--dark-blue);
+            font-size: 1.5rem;
+        }
+
+        .stat-card p {
+            margin: 0;
+            color: #5c6a8a;
+        }
+
+        .vision-mission {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .process {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .process-step {
+            background: var(--white);
+            padding: 1.7rem;
+            border-radius: 24px;
+            border: 1px solid rgba(11, 61, 145, 0.08);
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .process-step span {
+            display: inline-flex;
+            width: 2.7rem;
+            height: 2.7rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--dark-blue);
+            font-weight: 700;
+        }
+
+        .process-step h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(11, 61, 145, 0.08);
+            box-shadow: var(--soft-shadow);
+        }
+
+        .contact-card h3 {
+            margin-top: 0;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-list li {
+            color: #4f5c7f;
+        }
+
+        .footer {
+            padding: 2rem 0 1.5rem;
+            color: #6b7280;
+            background: var(--white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .footer-links,
+        .social-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .footer-links a,
+        .social-list a {
+            color: #4f5c7f;
+        }
+
+        .social-placeholder {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .social-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--dark-blue);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(11, 61, 145, 0.08);
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: #7a829c;
+        }
+
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-grid,
+            .programs,
+            .features,
+            .statistics,
+            .vision-mission,
+            .process,
+            .contact-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .hero {
+                padding-top: 4rem;
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .button-primary,
+            .button-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Student Basic Information</h1>
-    <p>This page shows the basic details for a sample student.</p>
+    <header>
+        <div class="container nav-bar">
+            <div class="brand">MRIPS</div>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#programs">Programs</a>
+                <a href="#features">Why Choose</a>
+                <a href="#admission">Admission</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <section>
-        <h2>Student Profile</h2>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <tr>
-                <th>Field</th>
-                <th>Information</th>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>Maria Johnson</td>
-            </tr>
-            <tr>
-                <td>Age</td>
-                <td>16</td>
-            </tr>
-            <tr>
-                <td>Grade</td>
-                <td>11</td>
-            </tr>
-            <tr>
-                <td>Student ID</td>
-                <td>STU12345</td>
-            </tr>
-            <tr>
-                <td>School</td>
-                <td>Sunrise High School</td>
-            </tr>
-            <tr>
-                <td>Favorite Subject</td>
-                <td>Biology</td>
-            </tr>
-        </table>
-    </section>
+    <main class="container">
+        <section class="hero" id="home">
+            <div class="hero-copy">
+                <h1>Malla Reddy Institute of Pharmaceutical Sciences</h1>
+                <p>Empowering future pharmacists through excellence in education and research. MRIPS has been shaping healthcare leaders since 2005 with advanced training, strong industry links, and a mission-driven campus culture.</p>
+                <div class="hero-buttons">
+                    <a class="button-primary" href="#admission">Apply Now</a>
+                    <a class="button-secondary" href="#programs">Explore Programs</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <h3>Premier Pharmacy Learning</h3>
+                <p>Established in 2005, MRIPS is recognized for quality pharmaceutical education, research innovation, experienced faculty, and industry-oriented learning.</p>
+                <div class="card">
+                    <h3>Our Commitment</h3>
+                    <p>Delivering world-class pharmacy education with practical training, research opportunities, and an environment built for future-ready professionals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-heading">
+                <h2>About MRIPS</h2>
+                <p class="section-subtext">MRIPS is a professional institute dedicated to pharmaceutical sciences, committed to student success, industry relevance, and breakthrough research.</p>
+            </div>
+            <div class="about-grid">
+                <div class="card">
+                    <h3>Established 2005</h3>
+                    <p>More than two decades of educational leadership, nurturing pharmacists with a strong foundation in science, ethics, and patient-centered care.</p>
+                </div>
+                <div class="card">
+                    <h3>Quality Education</h3>
+                    <p>Comprehensive curriculum and rigorous academic standards provide students with the skills and knowledge required for the future of pharmacy.</p>
+                </div>
+                <div class="card">
+                    <h3>Research & Innovation</h3>
+                    <p>Innovative research programs drive new discoveries and give students access to real-world scientific investigation and development.</p>
+                </div>
+                <div class="card">
+                    <h3>Experienced Faculty</h3>
+                    <p>Dedicated professors and industry professionals deliver mentoring, technical expertise, and practical insights.</p>
+                </div>
+                <div class="card">
+                    <h3>Industry-Oriented Learning</h3>
+                    <p>Hands-on experiences, internships, and collaborations with healthcare organizations ensure students are workplace-ready.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs">
+            <div class="section-heading">
+                <h2>Programs Offered</h2>
+            </div>
+            <div class="programs">
+                <div class="program-card">
+                    <h3>B.Pharm</h3>
+                    <p>Foundational undergraduate program focused on pharmaceutical sciences, drug development, and healthcare applications.</p>
+                </div>
+                <div class="program-card">
+                    <h3>M.Pharm</h3>
+                    <p>Advanced postgraduate studies emphasizing specialization, research methodology, and professional advancement.</p>
+                </div>
+                <div class="program-card">
+                    <h3>Pharm.D</h3>
+                    <p>Professional Doctor of Pharmacy degree designed for clinical pharmacists, healthcare practice, and patient care excellence.</p>
+                </div>
+                <div class="program-card">
+                    <h3>PhD Programs</h3>
+                    <p>Doctoral research opportunities for students seeking academic, scientific, and leadership careers in pharmaceutical science.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="section-heading">
+                <h2>Why Choose MRIPS</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <h4>Experienced Faculty</h4>
+                    <p>Professors with academic excellence and industry experience guide students toward professional success.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Modern Laboratories</h4>
+                    <p>State-of-the-art labs provide practical exposure to the latest pharmaceutical techniques and technology.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Research Opportunities</h4>
+                    <p>Students participate in research projects that build knowledge and inspire new pharmaceutical innovations.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Industry Exposure</h4>
+                    <p>Strong partnerships with pharmaceutical companies ensure experiential learning and career readiness.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Placements Support</h4>
+                    <p>Dedicated career services assist students in securing internships, placements, and professional development.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Student Development</h4>
+                    <p>Holistic education includes leadership, communication, and personal growth beyond academics.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <h2>Campus Highlights</h2>
+            </div>
+            <div class="statistics">
+                <div class="stat-card">
+                    <h3>20+ Years</h3>
+                    <p>Of excellence in pharmacy education and student success.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Multiple Programs</h3>
+                    <p>Comprehensive pharmacy curriculum across undergraduate, postgraduate, and doctoral levels.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Research Facilities</h3>
+                    <p>Advanced labs and centers dedicated to pharmaceutical research and development.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Industry Collaboration</h3>
+                    <p>Strong partner network that enhances learning, internships, and career outcomes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="vision-mission">
+            <div class="card">
+                <h3>Vision</h3>
+                <p>To be a leading pharmacy institute recognized for innovation, quality education, and transformative research that improves healthcare outcomes.</p>
+            </div>
+            <div class="card">
+                <h3>Mission</h3>
+                <p>To empower students with knowledge, practical skills, and ethical leadership required to excel in pharmaceutical science and healthcare industries.</p>
+            </div>
+        </section>
+
+        <section id="admission">
+            <div class="section-heading">
+                <h2>Admission Process</h2>
+            </div>
+            <div class="process">
+                <div class="process-step">
+                    <span>1</span>
+                    <h4>Apply Online</h4>
+                    <p>Submit the application form through our secure online portal to begin your journey.</p>
+                </div>
+                <div class="process-step">
+                    <span>2</span>
+                    <h4>Submit Documents</h4>
+                    <p>Provide academic records, certificates, and identification documents for verification.</p>
+                </div>
+                <div class="process-step">
+                    <span>3</span>
+                    <h4>Eligibility Verification</h4>
+                    <p>Admissions team reviews your application and confirms academic eligibility.</p>
+                </div>
+                <div class="process-step">
+                    <span>4</span>
+                    <h4>Admission Confirmation</h4>
+                    <p>Receive your admission letter and enrollment guidance to join MRIPS.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-heading">
+                <h2>Contact</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Malla Reddy Institute of Pharmaceutical Sciences</h3>
+                    <ul class="contact-list">
+                        <li><strong>Address:</strong> 123 Pharmacy Avenue, Hyderabad, Telangana, India</li>
+                        <li><strong>Phone:</strong> +91 98765 43210</li>
+                        <li><strong>Email:</strong> admissions@mrips.edu.in</li>
+                        <li><strong>Website:</strong> www.mrips.edu.in</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Get in Touch</h3>
+                    <p>Speak with our admissions team for program guidance, application support, and campus inquiries.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>MRIPS</h3>
+                <p>Shaping pharmaceutical professionals with academic excellence, research focus, and industry-ready training.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#admission">Admission</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Social Media</h4>
+                <ul class="social-list">
+                    <li class="social-placeholder"><span class="social-dot"></span>Facebook</li>
+                    <li class="social-placeholder"><span class="social-dot"></span>LinkedIn</li>
+                    <li class="social-placeholder"><span class="social-dot"></span>Instagram</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 Malla Reddy Institute of Pharmaceutical Sciences. All rights reserved.</p>
+            <p>Designed for professional education and student success.</p>
+        </div>
+    </footer>
 </body>
 </html>
