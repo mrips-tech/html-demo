@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRIPS Contact</title>
+    <style>
+        :root {
+            --dark-blue: #0B3D91;
+            --gold: #F4B400;
+            --white: #ffffff;
+            --light-gray: #f5f7fb;
+            --text: #1f2a46;
+            --soft-shadow: 0 18px 45px rgba(11, 61, 145, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 1rem 0;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 1px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark-blue);
+            letter-spacing: 0.06em;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark-blue);
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        .page-title {
+            margin: 0 0 1rem;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--dark-blue);
+        }
+
+        .page-intro {
+            max-width: 760px;
+            margin: 0 0 2rem;
+            color: #4f5c7f;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+        }
+
+        .info-card,
+        .form-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 2rem;
+            box-shadow: var(--soft-shadow);
+            border: 1px solid rgba(11, 61, 145, 0.08);
+        }
+
+        .info-card h2,
+        .form-card h2 {
+            margin-top: 0;
+            color: var(--dark-blue);
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-list li {
+            color: #4f5c7f;
+            line-height: 1.75;
+        }
+
+        .form-card form {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.45rem;
+            color: var(--dark-blue);
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border: 1px solid rgba(11, 61, 145, 0.18);
+            border-radius: 14px;
+            font-size: 1rem;
+            color: var(--text);
+            background: #fff;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--dark-blue);
+            box-shadow: 0 0 0 4px rgba(11, 61, 145, 0.08);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .field-group {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 500;
+            color: #4f5c7f;
+        }
+
+        .submit-button {
+            padding: 1rem 1.5rem;
+            border-radius: 999px;
+            border: none;
+            background: var(--dark-blue);
+            color: var(--white);
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 30px rgba(11, 61, 145, 0.18);
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-bar">
+            <div class="brand">MRIPS</div>
+            <nav class="nav-links">
+                <a href="index.html#about">About</a>
+                <a href="index.html#programs">Programs</a>
+                <a href="index.html#features">Why Choose</a>
+                <a href="index.html#admission">Admission</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h1 class="page-title">Contact Malla Reddy Institute of Pharmaceutical Sciences</h1>
+            <p class="page-intro">Reach out for admissions guidance, program details, or general enquiries. Our admissions team is ready to support your pharmacy career path.</p>
+
+            <div class="contact-grid">
+                <div class="info-card">
+                    <h2>Contact Information</h2>
+                    <ul class="info-list">
+                        <li><strong>Institute Name:</strong> Malla Reddy Institute of Pharmaceutical Sciences</li>
+                        <li><strong>Address:</strong> 123 Pharmacy Avenue, Hyderabad, Telangana, India</li>
+                        <li><strong>Phone:</strong> +91 98765 43210</li>
+                        <li><strong>Email:</strong> admissions@mrips.edu.in</li>
+                        <li><strong>Website:</strong> www.mrips.edu.in</li>
+                    </ul>
+                </div>
+
+                <div class="form-card" id="contact">
+                    <h2>Contact Form</h2>
+                    <form>
+                        <div class="field-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+                        </div>
+
+                        <div class="field-row">
+                            <div class="field-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="name@example.com">
+                            </div>
+                            <div class="field-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                            </div>
+                        </div>
+
+                        <div class="field-row">
+                            <div class="field-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" name="dob">
+                            </div>
+                            <div class="field-group">
+                                <label>Gender</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="gender" value="male"> Male</label>
+                                    <label><input type="radio" name="gender" value="female"> Female</label>
+                                    <label><input type="radio" name="gender" value="other"> Other</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label>Areas of Interest</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="interest" value="bpharm"> B.Pharm</label>
+                                <label><input type="checkbox" name="interest" value="mpharm"> M.Pharm</label>
+                                <label><input type="checkbox" name="interest" value="pharmd"> Pharm.D</label>
+                                <label><input type="checkbox" name="interest" value="phd"> PhD</label>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" placeholder="Enter your address"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Malla Reddy Institute of Pharmaceutical Sciences. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>                                                 
